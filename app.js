@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 
-var viewsRouter = require('./server/routes/views');
-var apiRouter = require('./server/routes/users');
+var viewsRouter = require('./server/routes/viewsRouter');
+var apiRouter = require('./server/routes/apisRouter');
 
 var app = express();
 
@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   console.log("-------------------------------------------------------------------------");
   console.log("status : ", err.status || 500);
-  console.log("message : ", err.message);
+  console.log("message : ", err.message || "unknown");
   console.log("err : ", req.app.get('env') === 'development' ? err : {});
   console.log("-------------------------------------------------------------------------");
 
